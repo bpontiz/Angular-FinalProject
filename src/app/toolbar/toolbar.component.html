@@ -1,1 +1,27 @@
-<p>toolbar works!</p>
+<mat-drawer-container class="drawerContainer">
+    <mat-drawer mode="over" #drawer class="drawerSidenav" mode="side">
+        <div class="divUlSidenav">
+            <p class="pMenu">Menu</p>
+            <ul>
+                <li><mat-icon class="icon-display">border_all</mat-icon>Tables</li>
+                <li><mat-icon class="icon-display">folder_shared</mat-icon>ABM</li>
+            </ul>
+        </div>
+    </mat-drawer>
+    
+    <div class="toolbarDiv">
+        <mat-toolbar>
+            <button (click)="drawer.toggle()" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+            <mat-icon>menu</mat-icon>
+            </button>
+            <span class="title">Student</span>
+            <span class="example-spacer"></span>
+            <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+                <mat-icon>home</mat-icon>
+            </button>
+            <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+                <mat-icon>account_circle</mat-icon>
+            </button>
+        </mat-toolbar>
+    </div>
+</mat-drawer-container>
