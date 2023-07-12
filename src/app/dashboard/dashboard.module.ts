@@ -7,13 +7,13 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 
 
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule,
-    MatIconModule,
-    MatButtonModule,
-    MatToolbarModule,
-    MatSidenavModule,
-  ]
+    declarations: [],
+    imports: [
+        CommonModule,
+        MatIconModule,
+        MatButtonModule,
+        MatToolbarModule,
+        MatSidenavModule,
+    ]
 })
-export class ToolbarModule { }
+export class DashboardModule { }

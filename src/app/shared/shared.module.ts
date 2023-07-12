@@ -6,6 +6,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+
 
 @NgModule({
     imports: [
@@ -18,6 +21,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
         MatToolbarModule,
         ReactiveFormsModule,
         MatSidenavModule,
+        MatFormFieldModule,
+        MatInputModule
     ]
 })
 

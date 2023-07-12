@@ -1,0 +1,32 @@
+#abmSection {
+    padding: 0 16px;
+}
+
+.inputContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.titleAbm {
+    font-size: 20px;
+}
+
+.subtextAbm {
+    font-size: 12px;
+}
+
+.inputBox {
+    width: 200px;
+    font-size: 12px;
+}
+
+.inputLabel, .submitBtn {
+    font-size: 12px;
+}
+
+.submitBtn {
+    margin-top: .5rem;
+}
