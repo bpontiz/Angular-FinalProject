@@ -8,7 +8,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-
+import { MatTableModule } from '@angular/material/table';
+import { FontSizingDirective } from './directives/font-sizing.directive';
+import { FullnamePipe } from './pipes/fullname.pipe';
 
 @NgModule({
     imports: [
@@ -22,7 +24,13 @@ import { MatInputModule } from '@angular/material/input';
         ReactiveFormsModule,
         MatSidenavModule,
         MatFormFieldModule,
-        MatInputModule
+        MatInputModule,
+        MatTableModule,
+        FullnamePipe
+    ],
+    declarations: [
+        FontSizingDirective,
+        FullnamePipe
     ]
 })
 

@@ -1,31 +1,46 @@
 <section id="abmSection">
-    <p class="titleAbm">ABM</p>
-    <p class="subtextAbm">ABM system allows you to sign up new students, update existing ones and make dismissions.</p>
-    <form [formGroup]="studentModel">
-        <div class="inputContainer">
-            <mat-form-field class="inputBox">
-                <mat-label class="inputLabel">Student's name</mat-label>
-                <input matInput placeholder="Pat" [formControl]="student_name_control" required>
-                <mat-error *ngIf="student_name_control.invalid">{{getErrorMessage(student_name_control)}}</mat-error>
-            </mat-form-field>
-            <mat-form-field class="inputBox">
-                <mat-label class="inputLabel">Student's surname</mat-label>
-                <input matInput placeholder="Mcmillan" [formControl]="student_surname_control" required>
-                <mat-error *ngIf="student_surname_control.invalid">{{getErrorMessage(student_surname_control)}}</mat-error>
-            </mat-form-field>
-            <mat-form-field class="inputBox">
-                <mat-label class="inputLabel">Student's email</mat-label>
-                <input matInput placeholder="pat@example.com" [formControl]="email" required>
-                <mat-error *ngIf="email.invalid">{{getErrorMessage(email)}}</mat-error>
-            </mat-form-field>
-            <ng-container>
+    <div class="shadowDiv">
+        <p class="titleAbm" appFontSizing>ABM</p>
+        <p class="subtextAbm">ABM system allows you to sign up new students, update existing ones and make dismissions.</p>
+        <form [formGroup]="studentModel">
+            <div class="inputContainer">
                 <mat-form-field class="inputBox">
-                    <mat-label class="inputLabel">Student's course</mat-label>
-                    <input matInput placeholder="Angular" [formControl]="course" required>
-                    <mat-error *ngIf="course.invalid">{{getErrorMessage(course)}}</mat-error>
+                    <mat-label class="inputLabel">Student's name</mat-label>
+                    <input matInput placeholder="Pat" [formControl]="student_name_control" required>
+                    <mat-error *ngIf="student_name_control.invalid">{{getErrorMessage(student_name_control)}}</mat-error>
                 </mat-form-field>
-            </ng-container>
-        </div>
-        <button class="submitBtn" mat-raised-button color="primary">Register Student</button>
-    </form>
+                <mat-form-field class="inputBox">
+                    <mat-label class="inputLabel">Student's surname</mat-label>
+                    <input matInput placeholder="Mcmillan" [formControl]="student_surname_control" required>
+                    <mat-error *ngIf="student_surname_control.invalid">{{getErrorMessage(student_surname_control)}}</mat-error>
+                </mat-form-field>
+                <mat-form-field class="inputBox">
+                    <mat-label class="inputLabel">Student's email</mat-label>
+                    <input matInput placeholder="pat@example.com" [formControl]="email" required>
+                    <mat-error *ngIf="email.invalid">{{getErrorMessage(email)}}</mat-error>
+                </mat-form-field>
+                <ng-container>
+                    <mat-form-field class="inputBox">
+                        <mat-label class="inputLabel">Student's course</mat-label>
+                        <input matInput placeholder="Angular" [formControl]="course" required>
+                        <mat-error *ngIf="course.invalid">{{getErrorMessage(course)}}</mat-error>
+                    </mat-form-field>
+                </ng-container>
+            </div>
+            <p class="subtextComplete">Complete form to register a new student.</p>
+            <button
+                class="submitBtn"
+                mat-raised-button
+                color="primary"
+                type="submit"
+                [disabled]="
+                    !student_name_control.valid ||
+                    !student_surname_control.valid ||
+                    !email.valid ||
+                    !course.valid
+                " 
+                (click)="onSubmit()"><mat-icon>add</mat-icon>Register Student</button>
+        </form>
+    </div>
+    <app-students [dataSource]="students"></app-students>
 </section>

@@ -1,6 +1,6 @@
-import { Component, Inject } from '@angular/core';
-import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
-
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
+import { Student } from '../students/model/student.model';
 
 
 interface StudentModel {
@@ -11,12 +11,18 @@ interface StudentModel {
   email: FormControl <string | null>;
 }
 
+const ELEMENT_DATA: Student[] = [];
+
+
 @Component({
   selector: 'app-students-abm',
   templateUrl: './students-abm.component.html',
   styleUrls: ['./students-abm.component.scss']
 })
 export class StudentsAbmComponent {
+  constructor(private fb: FormBuilder) {}
+
+  public students: Student[] = ELEMENT_DATA;
 
   validateRequired = Validators.required;
 
@@ -46,7 +52,7 @@ export class StudentsAbmComponent {
     };
 
     if(control.hasError('minlength')) {
-      return 'Enter at least 3 characters'
+      return 'Enter at least 3 characters';
     };
 
     if (control.hasError('email')) {
@@ -54,5 +60,18 @@ export class StudentsAbmComponent {
     } else {
       return '';
     };
-  }
+  };
+
+  onSubmit(): void {
+    this.students = [
+      ...this.students,
+      {
+        id: this.students.length + 1,
+        name: this.student_name_control.value,
+        surname: this.student_surname_control.value,
+        email: this.email.value,
+        course: this.course.value
+      }
+    ]
+  };
 }
