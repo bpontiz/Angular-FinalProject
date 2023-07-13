@@ -2,7 +2,7 @@
     <div class="shadowDiv">
         <p class="titleAbm" appFontSizing>ABM</p>
         <p class="subtextAbm">ABM system allows you to sign up new students, update existing ones and make dismissions.</p>
-        <form [formGroup]="studentModel">
+        <form [formGroup]="studentModel" #studentForm="ngForm" (ngSubmit)="studentForm.resetForm()">
             <div class="inputContainer">
                 <mat-form-field class="inputBox">
                     <mat-label class="inputLabel">Student's name</mat-label>
