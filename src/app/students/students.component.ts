@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Student } from './model/student.model';
 
 @Component({
@@ -7,8 +7,14 @@ import { Student } from './model/student.model';
   styleUrls: ['./students.component.scss'],
 })
 export class StudentsComponent {
-  displayedColumns: string[] = ['id', 'name', 'email', 'course'];
+  displayedColumns: string[] = ['edit', 'id', 'name', 'email', 'course'];
 
   @Input()
   dataSource: Student[] = [];
+
+  @Output()
+  deleteStudent = new EventEmitter<Student>();
+  
+  @Output()
+  editStudent = new EventEmitter<Student>();
 }

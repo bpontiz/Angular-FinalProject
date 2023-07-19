@@ -37,10 +37,13 @@
                     !student_name_control.valid ||
                     !student_surname_control.valid ||
                     !email.valid ||
-                    !course.valid
-                " 
+                    !course.valid" 
                 (click)="onSubmit()"><mat-icon>add</mat-icon>Register Student</button>
         </form>
     </div>
-    <app-students [dataSource]="students"></app-students>
+    <app-students
+        [dataSource]="students"
+        (deleteStudent)="onDeleteStudent($event)"
+        (editStudent)="onEditStudent($event)">
+    </app-students>
 </section>
