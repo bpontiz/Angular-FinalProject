@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { Student } from '../students/model/student.model';
+import { StudentsAbmService } from './students-abm.service';
 
 
 interface StudentModel {
@@ -11,18 +12,17 @@ interface StudentModel {
   email: FormControl <string | null>;
 }
 
-const ELEMENT_DATA: Student[] = [];
-
-
 @Component({
   selector: 'app-students-abm',
   templateUrl: './students-abm.component.html',
   styleUrls: ['./students-abm.component.scss']
 })
 export class StudentsAbmComponent {
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private studentService: StudentsAbmService) {
+    this.students = this.studentService.getStudents();
+  }
 
-  public students: Student[] = ELEMENT_DATA;
+  public students: Student[] = [];
 
   validateRequired = Validators.required;
 
