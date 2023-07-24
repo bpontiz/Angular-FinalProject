@@ -42,7 +42,7 @@
         </form>
     </div>
     <app-students
-        [dataSource]="students"
+        [dataSource]="(students | async) || []"
         (deleteStudent)="onDeleteStudent($event)"
         (editStudent)="onEditStudent($event)">
     </app-students>
