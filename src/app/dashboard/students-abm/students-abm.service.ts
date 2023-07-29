@@ -3,7 +3,7 @@ import { Student } from '../students/model/student.model';
 import { BehaviorSubject, Observable, Subject, delay, of, take } from 'rxjs';
 
 const students_db: Observable<Student[]> = of([
-  {id: 1, name: 'PAT', surname: 'MCMILLAN', email: 'pat@example.com', course: 'Angular'},
+  {id: 100000000001, name: 'PAT', surname: 'MCMILLAN', email: 'pat@example.com', course: 'Angular'},
 ]).pipe(delay(1000));
 
 @Injectable({
@@ -33,7 +33,7 @@ export class StudentsAbmService {
           ...oldCollection,
           {
             ...newStudent,
-            id: oldCollection.length + 1
+            id: Math.round(Date.now() * Math.random() * 100)
           }
         ]);
       }
