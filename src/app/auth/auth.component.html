@@ -1,1 +1,27 @@
-<p>auth works!</p>
+<div class="blurImg"></div>
+<section>
+    <div class="example-container">
+        <form>
+            <p class="authTitle">Welcome to Studently</p>
+            <p>Log In</p>
+            <mat-form-field>
+                <mat-label>Enter your email</mat-label>
+                <input matInput placeholder="admin@admin" [formControl]="email" required autocomplete="off">
+                <mat-error *ngIf="email.invalid">{{getErrorMessage(email)}}</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Enter your password</mat-label>
+                <input type="password" matInput placeholder="1234" [formControl]="password" required>
+                <mat-error *ngIf="password.invalid">{{getErrorMessage(password)}}</mat-error>
+            </mat-form-field>
+            <button
+                routerLink="/dashboard"
+                mat-raised-button
+                type="submit"
+                color="primary"
+                [disabled]="!email.valid || !password.valid">
+                Enter
+            </button>
+        </form>
+    </div>
+</section>
