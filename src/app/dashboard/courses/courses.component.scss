@@ -1,0 +1,20 @@
+#courseSection {
+    margin-top: 2rem;
+}
+
+.titleTable {
+    font-size: 20px;
+}
+
+.buttonChanging {
+    padding: 0;
+    margin-right: 3px;
+    border: none;
+    background-color: transparent;
+    transition: 200ms ease-in-out;
+}
+
+.buttonChanging:hover {
+    transform: scale(1.2);
+    transition: 200ms ease-in-out;
+}

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Student } from '../students/model/student.model';
+import { Student } from '../../students/model/student.model';
 import { BehaviorSubject, Observable, Subject, delay, of, take } from 'rxjs';
 
 const students_db: Observable<Student[]> = of([
-  {id: 100000000001, name: 'PAT', surname: 'MCMILLAN', email: 'pat@example.com', course: 'Angular'},
+  {id: 1000000000001, name: 'PAT', surname: 'MCMILLAN', email: 'pat@example.com', course: 'Angular'},
 ]).pipe(delay(1000));
 
 @Injectable({
@@ -38,7 +38,7 @@ export class StudentsAbmService {
         ]);
       }
     })
-  }
+  };
 
   deleteStudent(studentToDelete: Student): void {
     const confirmAction: boolean = confirm(
@@ -95,9 +95,13 @@ export class StudentsAbmService {
             break;
 
           case '3':
-            const editEmail: string | null = prompt(`--------------\nEditing ${studentToEdit.name?.toUpperCase()} ${studentToEdit.surname?.toUpperCase()}\nNew student email: `);
+            let editEmail: string | null = prompt(`--------------\nEditing ${studentToEdit.name?.toUpperCase()} ${studentToEdit.surname?.toUpperCase()}\nNew student email: `);
 
-            if (editEmail) {
+            while(!editEmail?.includes('@')) {
+              editEmail = prompt(`--------------\nEditing ${studentToEdit.name?.toUpperCase()} ${studentToEdit.surname?.toUpperCase()}\n You must enter a valid email. New student surname: `);
+            };
+
+            if (editEmail.includes('@')) {
               studentToEdit.email = editEmail;
 
               this._students$.next(

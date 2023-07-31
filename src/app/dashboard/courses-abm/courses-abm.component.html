@@ -1,0 +1,45 @@
+<section id="abmSection">
+    <div class="shadowDiv">
+        <p class="titleAbm" appFontSizing>Courses ABM</p>
+        <p class="subtextAbm">ABM system allows you to sign up new courses, update existing ones and make dismissions.</p>
+        <form [formGroup]="courseModel" #courseForm="ngForm" (ngSubmit)="courseForm.resetForm()">
+            <div class="inputContainer">
+                <mat-form-field class="inputBox">
+                    <mat-label class="inputLabel">Course's name</mat-label>
+                    <input matInput placeholder="TypeScript" [formControl]="courseName_control" required>
+                    <mat-error *ngIf="courseName_control.invalid">{{getErrorMessage(courseName_control)}}</mat-error>
+                </mat-form-field>
+                <mat-form-field class="inputBox">
+                    <mat-label class="inputLabel">Course's type</mat-label>
+                    <mat-select class="inputOption" [formControl]="type_control" required>
+                        <mat-option class="inputOption" *ngFor="let type of types" [value]="type.value">
+                            {{type.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="type_control.invalid">{{getErrorMessage(type_control)}}</mat-error>
+                </mat-form-field>
+                <mat-form-field class="inputBox">
+                    <mat-label class="inputLabel">Course's credits</mat-label>
+                    <input matInput placeholder="5" [formControl]="credits_control" required>
+                    <mat-error *ngIf="credits_control.invalid">{{getErrorMessage(credits_control)}}</mat-error>
+                </mat-form-field>
+            </div>
+            <p class="subtextComplete">Complete form to register a new course.</p>
+            <button
+                class="submitBtn"
+                mat-raised-button
+                color="warn"
+                type="submit"
+                [disabled]="
+                    !courseName_control.valid ||
+                    !type_control.valid ||
+                    !credits_control.valid" 
+                (click)="onSubmit()"><mat-icon>add</mat-icon>Register Course</button>
+        </form>
+    </div>
+    <app-courses
+        [dataSource]="(courses | async) || []"
+        (deleteCourse)="onDeleteCourse($event)"
+        (editCourse)="onEditCourse($event)">
+    </app-courses>
+</section>

@@ -5,11 +5,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { HomeComponent } from './home/home.component';
-
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
     declarations: [
-    HomeComponent
+    HomeComponent,
   ],
     imports: [
         CommonModule,
@@ -17,6 +17,7 @@ import { HomeComponent } from './home/home.component';
         MatButtonModule,
         MatToolbarModule,
         MatSidenavModule,
+        MatSelectModule
     ]
 })
 export class DashboardModule { }

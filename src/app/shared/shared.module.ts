@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, UpperCasePipe } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { FontSizingDirective } from './directives/font-sizing.directive';
 import { FullnamePipe } from './pipes/fullname.pipe';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
     imports: [
@@ -26,7 +27,9 @@ import { FullnamePipe } from './pipes/fullname.pipe';
         MatFormFieldModule,
         MatInputModule,
         MatTableModule,
-        FullnamePipe
+        FullnamePipe,
+        UpperCasePipe,
+        MatSelectModule
     ],
     declarations: [
         FontSizingDirective,

@@ -10,6 +10,8 @@ import { SharedModule } from './shared/shared.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthComponent } from './auth/auth.component';
+import { CoursesComponent } from './dashboard/courses/courses.component';
+import { CoursesAbmComponent } from './dashboard/courses-abm/courses-abm.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { AuthComponent } from './auth/auth.component';
     StudentsComponent,
     StudentsAbmComponent,
     DashboardComponent,
-    AuthComponent
+    AuthComponent,
+    CoursesComponent,
+    CoursesAbmComponent
   ],
   imports: [
     BrowserModule,
