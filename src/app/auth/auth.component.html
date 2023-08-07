@@ -1,7 +1,7 @@
 <div class="blurImg"></div>
 <section>
     <div class="example-container">
-        <form>
+        <form #authForm="ngForm" (ngSubmit)="authForm.resetForm()">
             <p class="authTitle">Welcome to Studently</p>
             <mat-form-field>
                 <mat-label>Enter your email</mat-label>
@@ -14,13 +14,16 @@
                 <mat-error *ngIf="password.invalid">{{getErrorMessage(password)}}</mat-error>
             </mat-form-field>
             <button
-                routerLink="/dashboard"
+
                 mat-raised-button
-                type="submit"
+                type="button"
                 color="primary"
-                [disabled]="!email.valid || !password.valid">
+                [disabled]="!email.valid || !password.valid"
+                (click)="login()">
                 Enter
             </button>
         </form>
     </div>
 </section>
+
+<!-- routerLink="/dashboard/home" -->
