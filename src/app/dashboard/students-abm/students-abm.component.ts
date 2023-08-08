@@ -70,7 +70,7 @@ export class StudentsAbmComponent implements OnDestroy {
   onSubmit(): void {
     this.studentService.addStudent(
       {
-        id: 1,
+        // id: 1,
         name: this.student_name_control.value,
         surname: this.student_surname_control.value,
         email: this.email.value,

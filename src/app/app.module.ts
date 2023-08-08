@@ -9,6 +9,7 @@ import { SharedModule } from './shared/shared.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CoursesComponent } from './dashboard/courses/courses.component';
 import { CoursesAbmComponent } from './dashboard/courses-abm/courses-abm.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { CoursesAbmComponent } from './dashboard/courses-abm/courses-abm.compone
     AppRoutingModule,
     BrowserAnimationsModule,
     SharedModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

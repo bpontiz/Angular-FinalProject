@@ -1,25 +1,24 @@
 import { Injectable } from '@angular/core';
 import { Student } from '../../students/model/student.model';
-import { BehaviorSubject, Observable, Subject, delay, of, take } from 'rxjs';
-
-const students_db: Observable<Student[]> = of([
-  {id: 1000000000001, name: 'PAT', surname: 'MCMILLAN', email: 'pat@example.com', course: 'Angular'},
-]).pipe(delay(1000));
+import { BehaviorSubject, Observable, Subject, delay, map, mergeMap, of, take } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StudentsAbmService {
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
   private _students$ = new BehaviorSubject<Student[]>([]);
 
   private students$ = this._students$.asObservable();
 
   loadStudents(): void {
-    students_db.subscribe({
-      next: (studentsFromDb) => this._students$.next(studentsFromDb)
-    });    
+    this.httpClient.get<Student[]>('http://localhost:3000/students').subscribe({
+      next: response => {
+        this._students$.next(response);
+      }
+    });
   };
 
   getStudents(): Observable<Student[]> {
@@ -27,17 +26,30 @@ export class StudentsAbmService {
   };
 
   addStudent(newStudent: Student): void {
-    this.students$.pipe(take(1)).subscribe({
-      next: (oldCollection) => {
-        this._students$.next([
-          ...oldCollection,
-          {
-            ...newStudent,
-            id: Math.round(Date.now() * Math.random() * 100)
-          }
-        ]);
-      }
-    })
+    // this.students$.pipe(take(1)).subscribe({
+    //   next: (oldCollection) => {
+    //     this._students$.next([
+    //       ...oldCollection,
+    //       {
+    //         ...newStudent,
+    //         id: Math.round(Date.now() * Math.random() * 100)
+    //       }
+    //     ]);
+    //   }
+    // })
+
+    this.httpClient.post<Student>('http://localhost:3000/students', newStudent)
+      .pipe(
+        mergeMap(studentToBeAdded => this.students$.pipe(
+          take(1),
+          map(oldCollection => [...oldCollection, studentToBeAdded])
+        ))
+      )
+      .subscribe({
+        next: updatedCollection => {
+          this._students$.next(updatedCollection)
+        }
+      });
   };
 
   deleteStudent(studentToDelete: Student): void {
@@ -45,13 +57,18 @@ export class StudentsAbmService {
       `Are you sure you want to delete student ${studentToDelete.name?.toUpperCase()} ${studentToDelete.surname?.toUpperCase()} ?`);
 
     if (confirmAction) {
-      this.students$.pipe(take(1)).subscribe({
-        next: (oldCollection) => {
-          this._students$.next(
-            oldCollection.filter( item => item.id !== studentToDelete.id)
-          )
-        }
-      })
+      // this.students$.pipe(take(1)).subscribe({
+      //   next: (oldCollection) => {
+      //     this._students$.next(
+      //       oldCollection.filter( item => item.email !== studentToDelete.email)
+      //     )
+      //   }
+      // })
+
+      // this.httpClient.delete(`http://localhost:3000/students/${id}`)
+      //   .subscribe({
+      //     next: studentDeleted => console.log(studentDeleted)          
+      //   });
     };
   };
 
