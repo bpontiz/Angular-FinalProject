@@ -15,5 +15,12 @@
       "course": "GO"
     }
   ],
-  "courses": []
+  "courses": [],
+  "users": [
+    {
+      "username": "Admin",
+      "email": "admin@admin",
+      "password": "1234"
+    }
+  ]
 }
