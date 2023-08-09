@@ -1,4 +1,19 @@
 {
-  "students": [],
+  "students": [
+    {
+      "id": 0,
+      "name": "pat",
+      "surname": "Mcmillan",
+      "email": "pat@example.com",
+      "course": "TS"
+    },
+    {
+      "id": 1,
+      "name": "Jason",
+      "surname": "State",
+      "email": "jas@example.com",
+      "course": "GO"
+    }
+  ],
   "courses": []
 }

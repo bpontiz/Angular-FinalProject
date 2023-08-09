@@ -17,7 +17,8 @@ export class StudentsAbmService {
     this.httpClient.get<Student[]>('http://localhost:3000/students').subscribe({
       next: response => {
         this._students$.next(response);
-      }
+      },
+      error: () => alert("Loading students ERROR!")
     });
   };
 
@@ -26,18 +27,6 @@ export class StudentsAbmService {
   };
 
   addStudent(newStudent: Student): void {
-    // this.students$.pipe(take(1)).subscribe({
-    //   next: (oldCollection) => {
-    //     this._students$.next([
-    //       ...oldCollection,
-    //       {
-    //         ...newStudent,
-    //         id: Math.round(Date.now() * Math.random() * 100)
-    //       }
-    //     ]);
-    //   }
-    // })
-
     this.httpClient.post<Student>('http://localhost:3000/students', newStudent)
       .pipe(
         mergeMap(studentToBeAdded => this.students$.pipe(
@@ -57,24 +46,26 @@ export class StudentsAbmService {
       `Are you sure you want to delete student ${studentToDelete.name?.toUpperCase()} ${studentToDelete.surname?.toUpperCase()} ?`);
 
     if (confirmAction) {
-      // this.students$.pipe(take(1)).subscribe({
-      //   next: (oldCollection) => {
-      //     this._students$.next(
-      //       oldCollection.filter( item => item.email !== studentToDelete.email)
-      //     )
-      //   }
-      // })
-
-      // this.httpClient.delete(`http://localhost:3000/students/${id}`)
-      //   .subscribe({
-      //     next: studentDeleted => console.log(studentDeleted)          
-      //   });
+      this.httpClient.delete(`http://localhost:3000/students/${studentToDelete.id}`)
+        .pipe(
+          mergeMap(
+            () => this.students$.pipe(
+              take(1),
+              map(newCollection => newCollection.filter(
+                student => student.id !== studentToDelete.id
+              ))
+            )
+          )
+        )
+        .subscribe({
+          next: newCollection => this._students$.next(newCollection)
+        });
     };
   };
 
   editStudent(studentToEdit: Student): void {
     this.students$.pipe(take(1)).subscribe({
-      next: (oldCollection) => {
+      next: () => {
         const editAction = prompt(
           `--------------\nEditing ${studentToEdit.name?.toUpperCase()} ${studentToEdit.surname?.toUpperCase()}\nChoose one to update:\n(1) Name\n(2) Surname\n(3) Email\n(4) Course\n(5) Press any key to cancel`
         );
@@ -85,12 +76,10 @@ export class StudentsAbmService {
             if (editName) {
               studentToEdit.name = editName;
 
-              this._students$.next(
-                oldCollection.map( el => ({
-                  ...el,
-                  studentToEdit
-                }))
-              );
+              this.httpClient.put<Student[]>(`http://localhost:3000/students/${studentToEdit.id}`, studentToEdit)
+                .subscribe({
+                  next: () => this.loadStudents()
+                })
             }
             
             break;
@@ -101,12 +90,10 @@ export class StudentsAbmService {
             if (editSurname) {
               studentToEdit.surname = editSurname;
 
-              this._students$.next(
-                oldCollection.map( el => ({
-                  ...el,
-                  studentToEdit
-                }))
-              );
+              this.httpClient.put<Student[]>(`http://localhost:3000/students/${studentToEdit.id}`, studentToEdit)
+                .subscribe({
+                  next: () => this.loadStudents()
+                })
             }
             
             break;
@@ -121,12 +108,10 @@ export class StudentsAbmService {
             if (editEmail.includes('@')) {
               studentToEdit.email = editEmail;
 
-              this._students$.next(
-                oldCollection.map( el => ({
-                  ...el,
-                  studentToEdit
-                }))
-              );
+              this.httpClient.put<Student[]>(`http://localhost:3000/students/${studentToEdit.id}`, studentToEdit)
+                .subscribe({
+                  next: () => this.loadStudents()
+                })
             }
             
             break;
@@ -137,12 +122,10 @@ export class StudentsAbmService {
             if (editCourse) {
               studentToEdit.course = editCourse;
 
-              this._students$.next(
-                oldCollection.map( el => ({
-                  ...el,
-                  studentToEdit
-                }))
-              );
+              this.httpClient.put<Student[]>(`http://localhost:3000/students/${studentToEdit.id}`, studentToEdit)
+                .subscribe({
+                  next: () => this.loadStudents()
+                })
             }
             
             break;
