@@ -22,19 +22,31 @@ export class AuthService {
         }).subscribe({
             next: response => {
                 if (response.length) {
-                    this._authService$.next(response[0]);
-                    this.router.navigate(['/dashboard'])
+                    const authUser = response[0];
+
+                    this._authService$.next(authUser);
+                    this.router.navigate(['/dashboard']);
+
+                    localStorage.setItem('token', authUser.token);
                 } else {
                     alert("Email or password are incorrect.");
                     this._authService$.next(null);
                 }
-            }
+            },
+            error: () => alert("Server is not running at the moment.\nTry later.")
         });
     };
 
     isAuthenticated(): Observable<boolean> {
-        return this.authService$.pipe(
-            take(1),
-            map( user => user ? true : false ))
+        return this.httpClient.get<User[]>('http://localhost:3000/users', {
+            params: {
+                token: localStorage.getItem('token') || ''
+            }
+        })
+        .pipe(
+            map(userResult => {
+                return !!userResult.length
+            })
+        )
     }
 }; 

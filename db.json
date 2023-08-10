@@ -15,12 +15,20 @@
       "course": "GO"
     }
   ],
-  "courses": [],
+  "courses": [
+    {
+      "id": 1000000001,
+      "courseName": "TypeScript",
+      "type": "FP",
+      "credits": "5"
+    }
+  ],
   "users": [
     {
       "username": "Admin",
       "email": "admin@admin",
-      "password": "1234"
+      "password": "1234",
+      "token": "%$bh279a8s7d98d9s7d0"
     }
   ]
 }

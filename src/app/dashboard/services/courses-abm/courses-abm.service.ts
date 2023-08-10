@@ -1,24 +1,28 @@
 import { Injectable } from '@angular/core';
 import { Course } from '../../courses/model/courses.model';
-import { BehaviorSubject, Observable, Subject, delay, of, take } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, delay, map, mergeMap, of, take } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
-const courses_db: Observable<Course[]> = of([
-  {id: 1000000001, courseName: 'TypeScript', type: 'FP', credits: '5'},
-]).pipe(delay(1000));
+// const courses_db: Observable<Course[]> = of([
+//   {id: 1000000001, courseName: 'TypeScript', type: 'FP', credits: '5'},
+// ]).pipe(delay(1000));
 
 @Injectable({
   providedIn: 'root'
 })
 export class CoursesAbmService {
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
   private _courses$ = new BehaviorSubject<Course[]>([]);
 
   private courses$ = this._courses$.asObservable();
 
   loadCourses(): void {
-    courses_db.subscribe({
-      next: (coursesFromDb) => this._courses$.next(coursesFromDb)
+    this.httpClient.get<Course[]>('http://localhost:3000/courses').subscribe({
+      next: response => {
+        this._courses$.next(response);
+      },
+      error: () => alert("Loading courses ERROR!")
     });
   };
 
@@ -27,17 +31,18 @@ export class CoursesAbmService {
   };
 
   addCourse(newCourse: Course): void {
-    this.courses$.pipe(take(1)).subscribe({
-      next: (oldCollection) => {
-        this._courses$.next([
-          ...oldCollection,
-          {
-            ...newCourse,
-            id: Math.round(Date.now() * Math.random() * 100)
-          }
-        ]);
-      }
-    })
+    this.httpClient.post<Course>('http://localhost:3000/courses', newCourse)
+      .pipe(
+        mergeMap(courseToBeAdded => this.courses$.pipe(
+          take(1),
+          map(oldCollection => [...oldCollection, courseToBeAdded])
+        ))
+      )
+      .subscribe({
+        next: updatedCollection => {
+          this._courses$.next(updatedCollection)
+        }
+      });
   };
 
   deleteCourse(courseToDelete: Course): void {
@@ -45,13 +50,20 @@ export class CoursesAbmService {
       `Are you sure you want to delete course ${courseToDelete.courseName?.toUpperCase()}?`);
 
     if (confirmAction) {
-      this.courses$.pipe(take(1)).subscribe({
-        next: (oldCollection) => {
-          this._courses$.next(
-            oldCollection.filter( item => item.id !== courseToDelete.id)
+      this.httpClient.delete(`http://localhost:3000/courses/${courseToDelete.id}`)
+        .pipe(
+          mergeMap(
+            () => this.courses$.pipe(
+              take(1),
+              map(newCollection => newCollection.filter(
+                course => course.id !== courseToDelete.id
+              ))
+            )
           )
-        }
-      })
+        )
+        .subscribe({
+          next: newCollection => this._courses$.next(newCollection)
+        });
     };
   };
 
@@ -68,12 +80,10 @@ export class CoursesAbmService {
             if (editName) {
               courseToEdit.courseName = editName;
 
-              this._courses$.next(
-                oldCollection.map( el => ({
-                  ...el,
-                  courseToEdit
-                }))
-              );
+              this.httpClient.put<Course[]>(`http://localhost:3000/courses/${courseToEdit.id}`, courseToEdit)
+                .subscribe({
+                  next: () => this.loadCourses()
+                })
             }
             
             break;
@@ -84,12 +94,10 @@ export class CoursesAbmService {
             if (editType) {
               courseToEdit.type = editType;
 
-              this._courses$.next(
-                oldCollection.map( el => ({
-                  ...el,
-                  courseToEdit
-                }))
-              );
+              this.httpClient.put<Course[]>(`http://localhost:3000/students/${courseToEdit.id}`, courseToEdit)
+                .subscribe({
+                  next: () => this.loadCourses()
+                })
             }
             
             break;
@@ -104,24 +112,11 @@ export class CoursesAbmService {
             if (editCredits > 0 && editCredits < 11) {
               courseToEdit.credits = String(editCredits);
 
-              this._courses$.next(
-                oldCollection.map( el => ({
-                  ...el,
-                  courseToEdit
-                }))
-              );
+              this.httpClient.put<Course[]>(`http://localhost:3000/students/${courseToEdit.id}`, courseToEdit)
+                .subscribe({
+                  next: () => this.loadCourses()
+                })
             }
-
-            // if (editCredits) {
-            //   courseToEdit.credits = String(editCredits);
-
-            //   this._courses$.next(
-            //     oldCollection.map( el => ({
-            //       ...el,
-            //       courseToEdit
-            //     }))
-            //   );
-            // }
             
             break;
 
