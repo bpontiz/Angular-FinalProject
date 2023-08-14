@@ -1,26 +1,51 @@
 {
   "students": [
     {
-      "id": 0,
-      "name": "pat",
+      "id": 1,
+      "name": "Pat",
       "surname": "Mcmillan",
-      "email": "pat@example.com",
+      "email": "pat@e.com",
       "course": "TS"
     },
     {
-      "id": 1,
+      "id": 2,
       "name": "Jason",
       "surname": "State",
-      "email": "jas@example.com",
+      "email": "jas@e.com",
+      "course": "Python"
+    },
+    {
+      "id": 3,
+      "name": "Miky",
+      "surname": "Myers",
+      "email": "miky@e.com",
       "course": "GO"
     }
   ],
   "courses": [
     {
-      "id": 1000000001,
-      "courseName": "TypeScript",
+      "id": 1,
+      "courseName": "TS",
       "type": "FP",
-      "credits": "5"
+      "credits": "3"
+    },
+    {
+      "id": 2,
+      "courseName": "JS",
+      "type": "A",
+      "credits": "1"
+    },
+    {
+      "id": 3,
+      "courseName": "GO",
+      "type": "SP",
+      "credits": "9"
+    },
+    {
+      "id": 4,
+      "courseName": "Python",
+      "type": "FP",
+      "credits": "4"
     }
   ],
   "users": [

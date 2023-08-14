@@ -68,7 +68,7 @@ export class CoursesAbmComponent {
   onSubmit(): void {
     this.courseService.addCourse(
       {
-        id: 1,
+        id: 0,
         courseName: this.courseName_control.value,
         type: this.type_control.value,
         credits: this.credits_control.value

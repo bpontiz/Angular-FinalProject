@@ -1,5 +1,5 @@
 export interface Course {
-    id: number | null;
+    id: number;
     courseName: string | null;
     type: string | null;
     credits: string | null;

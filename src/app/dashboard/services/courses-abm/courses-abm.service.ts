@@ -3,9 +3,6 @@ import { Course } from '../../courses/model/courses.model';
 import { BehaviorSubject, Observable, Subject, delay, map, mergeMap, of, take } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
-// const courses_db: Observable<Course[]> = of([
-//   {id: 1000000001, courseName: 'TypeScript', type: 'FP', credits: '5'},
-// ]).pipe(delay(1000));
 
 @Injectable({
   providedIn: 'root'
