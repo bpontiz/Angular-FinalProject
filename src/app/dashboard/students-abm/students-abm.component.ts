@@ -3,8 +3,8 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 import { Student } from '../students/model/student.model';
 import { StudentsAbmService } from '../services/students-abm/students-abm.service';
 import { Observable, Subject } from 'rxjs';
-import { CounterActions } from 'src/app/store/counter.actions';
 import { Store } from '@ngrx/store';
+import { CounterStudentActions } from 'src/app/store/students/counter.students.actions';
 
 
 interface StudentModel {
@@ -30,11 +30,11 @@ export class StudentsAbmComponent implements OnDestroy {
 
     this.students = this.studentService.getStudents();
 
-    this.store.subscribe({
-      next: v => {
-        console.log(v);
-      }
-    });
+    // this.store.subscribe({
+    //   next: v => {
+    //     console.log(v);
+    //   }
+    // });
   };
 
   ngOnDestroy(): void {
@@ -90,13 +90,13 @@ export class StudentsAbmComponent implements OnDestroy {
       }
     );
 
-    this.store.dispatch(CounterActions.increase());
+    this.store.dispatch(CounterStudentActions.increaseStudentQuantity());
   }
 
   onDeleteStudent(deleteStudent: Student): void {
     this.studentService.deleteStudent(deleteStudent);
 
-    this.store.dispatch(CounterActions.decrease());
+    this.store.dispatch(CounterStudentActions.decreaseStudentQuantity());
   };
 
   onEditStudent(editStudent: Student): void {    

@@ -43,9 +43,9 @@
     },
     {
       "id": 4,
-      "courseName": "Python",
-      "type": "FP",
-      "credits": "4"
+      "courseName": "Java",
+      "type": "A",
+      "credits": "7"
     }
   ],
   "users": [

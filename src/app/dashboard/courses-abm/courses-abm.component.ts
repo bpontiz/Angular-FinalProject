@@ -4,7 +4,7 @@ import { Course } from '../courses/model/courses.model';
 import { CoursesAbmService } from '../services/courses-abm/courses-abm.service';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { CounterActions } from 'src/app/store/counter.actions';
+import { CounterCourseActions } from 'src/app/store/courses/counter.courses.actions';
 
 interface CourseModel {
   id: FormControl <string | null>;
@@ -32,12 +32,6 @@ export class CoursesAbmComponent {
     this.courseService.loadCourses();
 
     this.courses = this.courseService.getCourses();
-
-    this.store.subscribe({
-      next: v => {
-        console.log(v);
-      }
-    });
   }
 
   public courses: Observable<Course[]>;
@@ -87,13 +81,13 @@ export class CoursesAbmComponent {
       }
     );
     
-    this.store.dispatch(CounterActions.increase());
+    this.store.dispatch(CounterCourseActions.increaseCourseQuantity());
   };
 
   onDeleteCourse(deleteCourse: Course): void {
     this.courseService.deleteCourse(deleteCourse);
     
-    this.store.dispatch(CounterActions.decrease());
+    this.store.dispatch(CounterCourseActions.decreaseCourseQuantity());
   };
 
   onEditCourse(editCourse: Course): void {    

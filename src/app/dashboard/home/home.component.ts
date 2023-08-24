@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { CounterActions } from 'src/app/store/counter.actions';
-import { selectCounterState, selectCounterStateValue } from 'src/app/store/counter.selector';
+import { selectCounterCourseStateValue } from 'src/app/store/courses/counter.courses.selector';
+import { selectCounterStudentState, selectCounterStudentStateValue } from 'src/app/store/students/counter.students.selector';
+import { CounterCourseActions } from 'src/app/store/courses/counter.courses.actions';
+import { CounterStudentActions } from 'src/app/store/students/counter.students.actions';
 
 @Component({
   selector: 'app-home',
@@ -10,32 +12,33 @@ import { selectCounterState, selectCounterStateValue } from 'src/app/store/count
 })
 export class HomeComponent {
   constructor(private store: Store) {
-    this.store.subscribe({
-      next: v => {
-        console.log('STORE',v);
+    this.store.select(selectCounterStudentStateValue).subscribe({
+      next: e => {
+        this.studentsQuantity = e;
       }
     });
 
-    this.store.select(selectCounterState).subscribe({
-      next: v => {
-        console.log('SELECT COUNTER STATE',v);
+    this.store.select(selectCounterCourseStateValue).subscribe({
+      next: e => {
+        this.coursesQuantity = e;
       }
     });
-
-    this.store.select(selectCounterStateValue).subscribe({
-      next: v => {
-        console.log('SELECT COUNTER STATE VALUE',v);
-        this.studentsQuantity = v;
-      }
-    });    
   }
 
-  onIncrease(): void {
-    this.store.dispatch(CounterActions.increase())
+  onIncreaseStudentQuantity(): void {
+    this.store.dispatch(CounterStudentActions.increaseStudentQuantity())
   };
 
-  onDecrease(): void {
-    this.store.dispatch(CounterActions.decrease())
+  onDecreaseStudentQuantity(): void {
+    this.store.dispatch(CounterStudentActions.decreaseStudentQuantity())
+  };
+
+  onIncreaseCourseQuantity(): void {
+    this.store.dispatch(CounterCourseActions.increaseCourseQuantity())
+  };
+
+  onDecreaseCourseQuantity(): void {
+    this.store.dispatch(CounterCourseActions.decreaseCourseQuantity())
   };
 
   public studentsQuantity = 0;

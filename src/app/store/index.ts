@@ -1,6 +1,8 @@
 import { ActionReducerMap } from "@ngrx/store";
-import { counterReducer } from "./counter.reducer";
+import { counterStudentReducer } from "./students/counter.students.reducer";
+import { counterCourseReducer } from "./courses/counter.courses.reducer";
 
 export const appReducer: ActionReducerMap<any> = {
-    counter: counterReducer
+    counterStudent: counterStudentReducer,
+    counterCourse: counterCourseReducer
 }
