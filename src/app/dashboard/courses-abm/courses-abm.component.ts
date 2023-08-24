@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 import { Course } from '../courses/model/courses.model';
 import { CoursesAbmService } from '../services/courses-abm/courses-abm.service';
 import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { CounterActions } from 'src/app/store/counter.actions';
 
 interface CourseModel {
   id: FormControl <string | null>;
@@ -22,10 +24,20 @@ interface CourseType {
   styleUrls: ['./courses-abm.component.scss']
 })
 export class CoursesAbmComponent {
-  constructor(private fb: FormBuilder, private courseService: CoursesAbmService) {
+  constructor(
+    private fb: FormBuilder,
+    private courseService: CoursesAbmService,
+    private store: Store
+  ) {
     this.courseService.loadCourses();
 
     this.courses = this.courseService.getCourses();
+
+    this.store.subscribe({
+      next: v => {
+        console.log(v);
+      }
+    });
   }
 
   public courses: Observable<Course[]>;
@@ -74,10 +86,14 @@ export class CoursesAbmComponent {
         credits: this.credits_control.value
       }
     );
+    
+    this.store.dispatch(CounterActions.increase());
   };
 
   onDeleteCourse(deleteCourse: Course): void {
     this.courseService.deleteCourse(deleteCourse);
+    
+    this.store.dispatch(CounterActions.decrease());
   };
 
   onEditCourse(editCourse: Course): void {    
