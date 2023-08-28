@@ -6,7 +6,7 @@
                 <li routerLink="home"><mat-icon class="icon-display">border_all</mat-icon>Home</li>
                 <li routerLink="students-abm"><mat-icon class="icon-display">school</mat-icon>Students</li>
                 <li routerLink="courses-abm"><mat-icon class="icon-display">folder_shared</mat-icon>Courses</li>
-                <li routerLink="/auth"><mat-icon class="icon-display">close</mat-icon>Log out</li>
+                <li (click)="logout()" routerLink="/auth"><mat-icon class="icon-display">close</mat-icon>Log out</li>
             </ul>
         </div>
     </mat-drawer>
@@ -18,7 +18,7 @@
             </button>
             <span class="title">Studently</span>
             <span class="example-spacer"></span>
-            <span *ngIf="authService$ | async; let authService" class="authUsername">{{ authService?.username}}</span>
+            <span *ngIf="authService$ | async; let authService" class="authUsername">{{ authService?.username }}</span>
             <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
                 <mat-icon>home</mat-icon>
             </button>

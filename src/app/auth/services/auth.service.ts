@@ -4,10 +4,16 @@ import { BehaviorSubject, Observable, map, take } from "rxjs";
 import { Router } from "@angular/router";
 import { User } from "src/app/dashboard/users/model/users.model";
 import { HttpClient } from "@angular/common/http";
+import { Store } from "@ngrx/store";
+import { AuthActions } from "src/app/store/auth/auth.actions";
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-    constructor(private router: Router, private httpClient: HttpClient) {}
+    constructor(
+        private router: Router,
+        private httpClient: HttpClient,
+        private store: Store
+    ) {}
 
     public _authService$ = new BehaviorSubject<LoginPayload | null>(null);
 
@@ -25,15 +31,21 @@ export class AuthService {
                     const authUser = response[0];
 
                     this._authService$.next(authUser);
+
+                    this.store.dispatch(AuthActions.setAuthUser({ payload: authUser }));
+
                     this.router.navigate(['/dashboard']);
 
                     localStorage.setItem('token', authUser.token);
                 } else {
                     alert("Email or password are incorrect.");
+
                     this._authService$.next(null);
+
+                    this.store.dispatch(AuthActions.setAuthUser({ payload: null }));
                 }
             },
-            error: () => alert("Server is not running at the moment.\nTry later.")
+            error: () => alert("Json Server is not running at the moment.\nTry later.")
         });
     };
 
@@ -45,8 +57,18 @@ export class AuthService {
         })
         .pipe(
             map(userResult => {
-                return !!userResult.length
+                if (userResult.length) {
+                    const authUser = userResult[0];
+
+                    this.store.dispatch(AuthActions.setAuthUser({ payload: authUser }));
+                }
+
+                return !!userResult.length;
             })
         )
+    }
+
+    public logout(): void {
+        this.store.dispatch(AuthActions.setAuthUser({ payload: null }));
     }
 }; 

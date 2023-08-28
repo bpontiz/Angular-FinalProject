@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { selectCounterCourseStateValue } from 'src/app/store/courses/counter.courses.selector';
-import { selectCounterStudentState, selectCounterStudentStateValue } from 'src/app/store/students/counter.students.selector';
+import { selectCounterStudentStateValue } from 'src/app/store/students/counter.students.selector';
 import { CounterCourseActions } from 'src/app/store/courses/counter.courses.actions';
 import { CounterStudentActions } from 'src/app/store/students/counter.students.actions';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -12,17 +13,11 @@ import { CounterStudentActions } from 'src/app/store/students/counter.students.a
 })
 export class HomeComponent {
   constructor(private store: Store) {
-    this.store.select(selectCounterStudentStateValue).subscribe({
-      next: e => {
-        this.studentsQuantity = e;
-      }
-    });
 
-    this.store.select(selectCounterCourseStateValue).subscribe({
-      next: e => {
-        this.coursesQuantity = e;
-      }
-    });
+    this.studentsQuantity$ = this.store.select(selectCounterStudentStateValue);
+
+    this.coursesQuantity$ = this.store.select(selectCounterCourseStateValue);
+    
   }
 
   onIncreaseStudentQuantity(): void {
@@ -41,7 +36,8 @@ export class HomeComponent {
     this.store.dispatch(CounterCourseActions.decreaseCourseQuantity())
   };
 
-  public studentsQuantity = 0;
+  public studentsQuantity$: Observable<number>;
 
-  public coursesQuantity = 0;
+  public coursesQuantity$: Observable<number>;
+
 }

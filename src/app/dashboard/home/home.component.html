@@ -2,11 +2,11 @@
 <section>
     <div class="div1">
         <p class="module">Students</p>
-        <p class="quantity">{{ studentsQuantity }}</p>
+        <p class="quantity">{{ studentsQuantity$ | async }}</p>
     </div>
     <div class="div2">
         <p class="module">Courses</p>
-        <p class="quantity">{{ coursesQuantity }}</p>
+        <p class="quantity">{{ coursesQuantity$ | async }}</p>
     </div>
     <div class="div3">
         <p class="module">Groups</p>

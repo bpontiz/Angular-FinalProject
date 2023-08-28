@@ -4,6 +4,10 @@ import db from '../../../../db.json';
 
 export const counterFeauterKey = 'counterStudent';
 
+export interface CounterStudentState {
+    value: number;
+};
+
 const initialStudentState = {
     value: db.students.length
 };

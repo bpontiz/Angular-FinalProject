@@ -4,6 +4,10 @@ import db from '../../../../db.json';
 
 export const counterFeauterKey = 'counterCourse';
 
+export interface CounterCourseState {
+    value: number;
+};
+
 const initialCourseState = {
     value: db.courses.length
 };

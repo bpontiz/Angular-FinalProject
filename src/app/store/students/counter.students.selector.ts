@@ -1,9 +1,9 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
-import { counterFeauterKey } from "./counter.students.reducer";
+import { CounterStudentState, counterFeauterKey } from "./counter.students.reducer";
 
-export const selectCounterStudentState = createFeatureSelector(counterFeauterKey);
+export const selectCounterStudentState = createFeatureSelector<CounterStudentState>(counterFeauterKey);
 
 export const selectCounterStudentStateValue = createSelector(
     selectCounterStudentState,
-    (state: any) => state.value
+    (state) => state.value
 )
