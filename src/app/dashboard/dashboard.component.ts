@@ -12,9 +12,10 @@ import { selectAuthUser } from '../store/auth/auth.selector';
 })
 export class DashboardComponent {
   constructor(private authService: AuthService, private store: Store) {
-    // this.authService$ = this.authService.authService$;
     this.authService$ = this.store.select(selectAuthUser);
   };
+
+  public authUser = this.authService.userForAuthentication
 
   logout(): void {
     this.authService.logout();

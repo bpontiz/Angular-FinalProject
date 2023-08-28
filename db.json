@@ -54,6 +54,12 @@
       "email": "admin@admin",
       "password": "1234",
       "token": "%$bh279a8s7d98d9s7d0"
+    },
+    {
+      "username": "Bruno",
+      "email": "bruno@admin",
+      "password": "1234bruno",
+      "token": "%$bh279a8s7d98d9s7d0"
     }
   ]
 }

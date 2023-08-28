@@ -18,7 +18,7 @@
             </button>
             <span class="title">Studently</span>
             <span class="example-spacer"></span>
-            <span *ngIf="authService$ | async; let authService" class="authUsername">{{ authService?.username }}</span>
+            <span *ngIf="authService$ | async;" class="authUsername">{{ authUser }}</span>
             <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
                 <mat-icon>home</mat-icon>
             </button>

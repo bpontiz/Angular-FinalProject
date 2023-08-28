@@ -7,6 +7,7 @@ import { HttpClient } from "@angular/common/http";
 import { Store } from "@ngrx/store";
 import { AuthActions } from "src/app/store/auth/auth.actions";
 
+
 @Injectable({ providedIn: 'root' })
 export class AuthService {
     constructor(
@@ -19,6 +20,8 @@ export class AuthService {
 
     public authService$ = this._authService$.asObservable();
 
+    public userForAuthentication: string | null = '';
+
     login(payload: LoginPayload): void {
         this.httpClient.get<User[]>('http://localhost:3000/users', {
             params: {
@@ -26,15 +29,17 @@ export class AuthService {
                 password: payload.password || ''
             }
         }).subscribe({
-            next: response => {
+            next: response => {                               
                 if (response.length) {
-                    const authUser = response[0];
-
+                    let authUser = response[0];             
+                    
                     this._authService$.next(authUser);
-
+                    
                     this.store.dispatch(AuthActions.setAuthUser({ payload: authUser }));
 
                     this.router.navigate(['/dashboard']);
+
+                    this.userForAuthentication = authUser.username;
 
                     localStorage.setItem('token', authUser.token);
                 } else {
