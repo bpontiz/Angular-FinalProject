@@ -65,8 +65,13 @@ export class AuthService {
                 if (userResult.length) {
                     const authUser = userResult[0];
 
+                    this.userForAuthentication = authUser.username;
+
                     this.store.dispatch(AuthActions.setAuthUser({ payload: authUser }));
-                }
+
+                } else {
+                    this.store.dispatch(AuthActions.setAuthUser({ payload: null }));
+                };
 
                 return !!userResult.length;
             })

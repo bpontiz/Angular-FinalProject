@@ -20,6 +20,13 @@
       "surname": "Myers",
       "email": "miky@e.com",
       "course": "GO"
+    },
+    {
+      "id": 4,
+      "name": "Mile",
+      "surname": "Santeria",
+      "email": "mile@e.com",
+      "course": "Python"
     }
   ],
   "courses": [
@@ -45,7 +52,7 @@
       "id": 4,
       "courseName": "Java",
       "type": "A",
-      "credits": "10"
+      "credits": "9"
     }
   ],
   "users": [
@@ -59,7 +66,7 @@
       "username": "Bruno",
       "email": "bruno@admin",
       "password": "1234bruno",
-      "token": "%$bh279a8s7d98d9s7d0"
+      "token": "%$rt479z1s7y28d2f2k7"
     }
   ]
 }

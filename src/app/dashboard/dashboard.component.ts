@@ -15,7 +15,7 @@ export class DashboardComponent {
     this.authService$ = this.store.select(selectAuthUser);
   };
 
-  public authUser = this.authService.userForAuthentication
+  public authUser = this.authService.userForAuthentication;
 
   logout(): void {
     this.authService.logout();
