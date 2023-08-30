@@ -7,7 +7,7 @@ import { Student } from './model/student.model';
   styleUrls: ['./students.component.scss'],
 })
 export class StudentsComponent {
-  displayedColumns: string[] = ['edit', 'id', 'name', 'email', 'course'];
+  displayedColumns: string[] = ['edit', 'id', 'name', 'email'];
 
   @Input()
   dataSource: Student[] = [];

@@ -3,5 +3,4 @@ export interface Student {
     name: string | null;
     surname: string | null;
     email: string | null;
-    course: string | null;
 };

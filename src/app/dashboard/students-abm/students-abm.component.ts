@@ -11,7 +11,6 @@ interface StudentModel {
   id: FormControl <string | null>;
   studentsurname: FormControl <string | null>;
   studentname: FormControl <string | null>;
-  course: FormControl <string | null>;
   email: FormControl <string | null>;
 }
 
@@ -49,14 +48,11 @@ export class StudentsAbmComponent implements OnDestroy {
 
   id = new FormControl('', [ this.validateRequired ]);
 
-  course = new FormControl('', [ this.validateRequired ]);
-
   studentModel: FormGroup <StudentModel> = new FormGroup(
     {
       id: this.id,
       studentsurname: this.student_surname_control,
       studentname: this.student_name_control,
-      course: this.course,
       email: this.email
     }
   );
@@ -79,8 +75,7 @@ export class StudentsAbmComponent implements OnDestroy {
         id: 0,
         name: this.student_name_control.value,
         surname: this.student_surname_control.value,
-        email: this.email.value,
-        course: this.course.value
+        email: this.email.value
       }
     );
 

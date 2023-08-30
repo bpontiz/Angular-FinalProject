@@ -4,29 +4,25 @@
       "id": 1,
       "name": "Pat",
       "surname": "Mcmillan",
-      "email": "pat@e.com",
-      "course": "TS"
+      "email": "pat@e.com"
     },
     {
       "id": 2,
       "name": "Jason",
       "surname": "State",
-      "email": "jas@e.com",
-      "course": "Python"
+      "email": "jas@e.com"
     },
     {
       "id": 3,
       "name": "Miky",
       "surname": "Myers",
-      "email": "miky@e.com",
-      "course": "GO"
+      "email": "miky@e.com"
     },
     {
       "id": 4,
       "name": "Mile",
       "surname": "Santeria",
-      "email": "mile@e.com",
-      "course": "Python"
+      "email": "mile@e.com"
     }
   ],
   "courses": [
@@ -73,7 +69,7 @@
     {
       "id": 1,
       "student_fullname": "PAT MCMILLAN",
-      "student_course": "TS",
+      "student_course": "TYPESCRIPT",
       "enrollment_timestamp": "8/30/2023, 6:26:19 PM"
     }
   ]

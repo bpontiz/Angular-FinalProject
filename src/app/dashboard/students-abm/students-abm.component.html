@@ -19,13 +19,6 @@
                     <input matInput placeholder="pat@example.com" [formControl]="email" required>
                     <mat-error *ngIf="email.invalid">{{getErrorMessage(email)}}</mat-error>
                 </mat-form-field>
-                <ng-container>
-                    <mat-form-field class="inputBox">
-                        <mat-label class="inputLabel">Student's course</mat-label>
-                        <input matInput placeholder="Angular" [formControl]="course" required>
-                        <mat-error *ngIf="course.invalid">{{getErrorMessage(course)}}</mat-error>
-                    </mat-form-field>
-                </ng-container>
             </div>
             <p class="subtextComplete">Complete form to register a new student.</p>
             <button
@@ -36,8 +29,7 @@
                 [disabled]="
                     !student_name_control.valid ||
                     !student_surname_control.valid ||
-                    !email.valid ||
-                    !course.valid" 
+                    !email.valid" 
                 (click)="onSubmit()"><mat-icon>add</mat-icon>Register Student</button>
         </form>
     </div>

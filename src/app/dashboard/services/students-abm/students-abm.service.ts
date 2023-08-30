@@ -67,7 +67,7 @@ export class StudentsAbmService {
     this.students$.pipe(take(1)).subscribe({
       next: () => {
         const editAction = prompt(
-          `--------------\nEditing ${studentToEdit.name?.toUpperCase()} ${studentToEdit.surname?.toUpperCase()}\nChoose one to update:\n(1) Name\n(2) Surname\n(3) Email\n(4) Course\n(5) Press any key to cancel`
+          `--------------\nEditing ${studentToEdit.name?.toUpperCase()} ${studentToEdit.surname?.toUpperCase()}\nChoose one to update:\n(1) Name\n(2) Surname\n(3) Email\n(4) Press any key to cancel`
         );
         switch (editAction) {
           case '1':
@@ -107,20 +107,6 @@ export class StudentsAbmService {
 
             if (editEmail.includes('@')) {
               studentToEdit.email = editEmail;
-
-              this.httpClient.put<Student[]>(`http://localhost:3000/students/${studentToEdit.id}`, studentToEdit)
-                .subscribe({
-                  next: () => this.loadStudents()
-                })
-            }
-            
-            break;
-
-          case '4':
-            const editCourse: string | null = prompt(`--------------\nEditing ${studentToEdit.name?.toUpperCase()} ${studentToEdit.surname?.toUpperCase()}\nNew student course: `);
-
-            if (editCourse) {
-              studentToEdit.course = editCourse;
 
               this.httpClient.put<Student[]>(`http://localhost:3000/students/${studentToEdit.id}`, studentToEdit)
                 .subscribe({
