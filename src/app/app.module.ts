@@ -13,6 +13,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { appReducer } from './store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
+import { EnrollmentAbmComponent } from './dashboard/enrollment-abm/enrollment-abm.component';
+import { EnrollmentComponent } from './dashboard/enrollment/enrollment.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,9 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     StudentsComponent,
     StudentsAbmComponent,
     CoursesComponent,
-    CoursesAbmComponent
+    CoursesAbmComponent,
+    EnrollmentAbmComponent,
+    EnrollmentComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +35,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     NgbModule,
     HttpClientModule,
     StoreModule.forRoot(appReducer, {}),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+    EffectsModule.forRoot([])
   ],
   providers: [],
   bootstrap: [AppComponent]

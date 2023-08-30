@@ -32,13 +32,13 @@
   "courses": [
     {
       "id": 1,
-      "courseName": "TS",
+      "courseName": "TypeScript",
       "type": "FP",
       "credits": "3"
     },
     {
       "id": 2,
-      "courseName": "JS",
+      "courseName": "JavaScript",
       "type": "A",
       "credits": "1"
     },
@@ -67,6 +67,14 @@
       "email": "bruno@admin",
       "password": "1234bruno",
       "token": "%$rt479z1s7y28d2f2k7"
+    }
+  ],
+  "enrollments": [
+    {
+      "id": 1,
+      "student_fullname": "PAT MCMILLAN",
+      "student_course": "TS",
+      "enrollment_timestamp": "8/30/2023, 6:26:19 PM"
     }
   ]
 }

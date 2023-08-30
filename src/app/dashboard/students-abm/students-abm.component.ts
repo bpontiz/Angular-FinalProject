@@ -29,12 +29,6 @@ export class StudentsAbmComponent implements OnDestroy {
     this.studentService.loadStudents();
 
     this.students = this.studentService.getStudents();
-
-    // this.store.subscribe({
-    //   next: v => {
-    //     console.log(v);
-    //   }
-    // });
   };
 
   ngOnDestroy(): void {
@@ -101,5 +95,5 @@ export class StudentsAbmComponent implements OnDestroy {
 
   onEditStudent(editStudent: Student): void {    
     this.studentService.editStudent(editStudent);
-  }
+  };
 }
