@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, map, mergeMap, take } from 'rxjs';
 import { Enrollment } from '../../enrollment/model/enrollment.model';
+import db from '../../../../../db.json';
+import { Student } from '../../students/model/student.model';
 
 @Injectable({
   providedIn: 'root'
@@ -28,26 +30,31 @@ export class EnrollmentAbmService {
   };
 
   addEnrollment(newEnrollment: Enrollment): void {
-    const modifiedEnrollment = {
-      ...newEnrollment,
-      student_fullname: newEnrollment.student_fullname?.toUpperCase(),
-      student_course: newEnrollment.student_course?.toUpperCase()
-    };
+    const getStudent: Student | undefined = db.students.find(
+      student => `${student.name} ${student.surname}` === newEnrollment.student_fullname);
 
-    console.log("NEW ENROLLMENT", modifiedEnrollment);
-    
-    this.httpClient.post<Enrollment>('http://localhost:3000/enrollments', modifiedEnrollment)
-      .pipe(
-        mergeMap(enrollmentToBeAdded => this.enrollment$.pipe(
-          take(1),
-          map(oldCollection => [...oldCollection, enrollmentToBeAdded])
-        ))
-      )
-      .subscribe({
-        next: updatedCollection => {
-          this._enrollment$.next(updatedCollection)
-        }
-      });
+    if (getStudent) {
+      const modifiedEnrollment = {
+        ...newEnrollment,
+        student_id: getStudent.id,
+        student_fullname: newEnrollment.student_fullname?.toUpperCase(),
+        student_course: newEnrollment.student_course?.toUpperCase()
+      };
+      
+      this.httpClient.post<Enrollment>('http://localhost:3000/enrollments', modifiedEnrollment)
+        .pipe(
+          mergeMap(enrollmentToBeAdded => this.enrollment$.pipe(
+            take(1),
+            map(oldCollection => [...oldCollection, enrollmentToBeAdded])
+          ))
+        )
+        .subscribe({
+          next: updatedCollection => {
+            this._enrollment$.next(updatedCollection)
+          }
+        });
+    }
+
   };
 
   deleteEnrollment(enrollmentToDelete: Enrollment): void {

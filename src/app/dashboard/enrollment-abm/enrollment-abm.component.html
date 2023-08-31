@@ -22,14 +22,6 @@
                     </mat-select>
                     <mat-error *ngIf="student_course.invalid">{{getErrorMessage(student_course)}}</mat-error>
                 </mat-form-field>
-                
-                <!-- <ng-container>
-                    <mat-form-field class="inputBox">
-                        <mat-label class="inputLabel">Student's course</mat-label>
-                        <input matInput placeholder="Angular" [formControl]="course" required>
-                        <mat-error *ngIf="course.invalid">{{getErrorMessage(course)}}</mat-error>
-                    </mat-form-field>
-                </ng-container> -->
             </div>
             <p class="subtextComplete">Complete form to register a new enrollment.</p>
             <button

@@ -48,6 +48,8 @@ export class StudentsAbmComponent implements OnDestroy {
 
   id = new FormControl('', [ this.validateRequired ]);
 
+  enrollment_id = new FormControl('', [ this.validateRequired ]);
+
   studentModel: FormGroup <StudentModel> = new FormGroup(
     {
       id: this.id,

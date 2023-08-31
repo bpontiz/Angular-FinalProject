@@ -68,9 +68,38 @@
   "enrollments": [
     {
       "id": 1,
+      "student_id": 1,
       "student_fullname": "PAT MCMILLAN",
       "student_course": "TYPESCRIPT",
-      "enrollment_timestamp": "8/30/2023, 6:26:19 PM"
+      "enrollment_timestamp": "30/8/2023, 18:26:19"
+    },
+    {
+      "id": 2,
+      "student_id": 2,
+      "student_fullname": "JASON STATE",
+      "student_course": "GO",
+      "enrollment_timestamp": "31/8/2023, 11:05:13"
+    },
+    {
+      "id": 4,
+      "student_id": 1,
+      "student_fullname": "PAT MCMILLAN",
+      "student_course": "JAVASCRIPT",
+      "enrollment_timestamp": "31/8/2023, 11:05:23"
+    },
+    {
+      "id": 5,
+      "student_id": 4,
+      "student_fullname": "MILE SANTERIA",
+      "student_course": "JAVA",
+      "enrollment_timestamp": "31/8/2023, 11:06:48"
+    },
+    {
+      "id": 6,
+      "student_id": 2,
+      "student_fullname": "JASON STATE",
+      "student_course": "JAVA",
+      "enrollment_timestamp": "31/8/2023, 11:07:06"
     }
   ]
 }
