@@ -16,6 +16,8 @@ export class EnrollmentAbmService {
 
   private enrollment$ = this._enrollment$.asObservable();
 
+  public apiBaseUrl = 'http://localhost:3000/enrollments';
+
   loadEnrollment(): void {
     this.httpClient.get<Enrollment[]>('http://localhost:3000/enrollments').subscribe({
       next: response => {
@@ -27,6 +29,10 @@ export class EnrollmentAbmService {
 
   getEnrollment(): Observable<Enrollment[]> {
     return this.enrollment$;
+  };
+
+  getEnrollmentById(enrollmentId: number): Observable<Enrollment[]> {
+    return this.httpClient.get<Enrollment[]>(`${this.apiBaseUrl}?student_id=${enrollmentId}`)
   };
 
   addEnrollment(newEnrollment: Enrollment): void {

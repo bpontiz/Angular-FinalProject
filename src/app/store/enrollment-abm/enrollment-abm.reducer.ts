@@ -7,19 +7,29 @@ export const enrollmentAbmFeatureKey = 'enrollmentAbm';
 
 export interface State {
   enrollments: Enrollment[];
+  enrollmentDetail: Enrollment | null;
 };
 
 export const initialState: State = {
-  enrollments: []
+  enrollments: [],
+  enrollmentDetail: null
 };
 
 export const reducer = createReducer(
   initialState,
   on(EnrollmentAbmActions.loadEnrollmentAbms, state => {
     return {
-      enrollments: db.enrollments
+      enrollments: db.enrollments,
+      enrollmentDetail: state.enrollmentDetail
     };
   }),
+
+  on(EnrollmentAbmActions.loadEnrollmentDetail, (state, action) => {
+    return {
+      ...state,
+      enrollmentDetail: db.enrollments.find( c => c.id == action.enrollment_id ) || null
+    }
+  })
 
 );
 

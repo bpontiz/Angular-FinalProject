@@ -9,11 +9,12 @@ import { MatSelectModule } from '@angular/material/select';
 import { DashboardComponent } from './dashboard.component';
 import { RouterModule } from '@angular/router';
 import { DashboardRoutingModule } from './dashboard.routing.module';
+import { MatHeaderRowDef } from '@angular/material/table';
 
 @NgModule({
     declarations: [
     HomeComponent,
-    DashboardComponent,
+    DashboardComponent
   ],
     imports: [
       DashboardRoutingModule,
@@ -23,7 +24,7 @@ import { DashboardRoutingModule } from './dashboard.routing.module';
       MatToolbarModule,
       MatSidenavModule,
       MatSelectModule,
-      RouterModule,
+      RouterModule, 
     ]
 })
 export class DashboardModule { }

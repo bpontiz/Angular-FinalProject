@@ -16,6 +16,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { EnrollmentAbmComponent } from './dashboard/enrollment-abm/enrollment-abm.component';
 import { EnrollmentComponent } from './dashboard/enrollment/enrollment.component';
+import { EnrollmentDetailComponent } from './dashboard/enrollment-detail/enrollment-detail.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { EnrollmentComponent } from './dashboard/enrollment/enrollment.component
     CoursesComponent,
     CoursesAbmComponent,
     EnrollmentAbmComponent,
-    EnrollmentComponent
+    EnrollmentComponent,
+    EnrollmentDetailComponent
   ],
   imports: [
     BrowserModule,

@@ -4,7 +4,6 @@ export const EnrollmentAbmActions = createActionGroup({
   source: 'EnrollmentAbm',
   events: {
     loadEnrollmentAbms: emptyProps(),
-    
-    
+    loadEnrollmentDetail: props<{enrollment_id: number}>()
   }
 });

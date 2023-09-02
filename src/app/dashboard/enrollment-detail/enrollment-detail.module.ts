@@ -6,7 +6,7 @@ import { EnrollmentAbmEffects } from '../../store/enrollment-abm/enrollment-abm.
 import { enrollmentAbmFeature } from 'src/app/store/enrollment-abm/enrollment-abm.reducer';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { EnrollmentDetailComponent } from '../enrollment-detail/enrollment-detail.component';
+
 
 @NgModule({
   declarations: [],

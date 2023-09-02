@@ -10,5 +10,6 @@ export const appReducer: ActionReducerMap<any> = {
     counterCourse: counterCourseReducer,
     counterEnrollment: counterEnrollmentReducer,
     enrollment: enrollmentReducer,
+    enrollmentAbm: enrollmentReducer,
     authUser: authReducer,
 };

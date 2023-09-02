@@ -6,3 +6,5 @@ export const selectEnrollmentAbmState = createFeatureSelector<fromEnrollmentAbm.
 );
 
 export const selectEnrollmentAbmStateValue = createSelector(selectEnrollmentAbmState, (state) => state.enrollments);
+
+export const selectEnrollmentDetailStateStudent = createSelector(selectEnrollmentAbmState, state => state.enrollmentDetail?.student_fullname);
