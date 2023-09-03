@@ -7,7 +7,7 @@
                 <li routerLink="students-abm"><mat-icon class="icon-display">school</mat-icon>Students</li>
                 <li routerLink="courses-abm"><mat-icon class="icon-display">folder_shared</mat-icon>Courses</li>
                 <li routerLink="enrollment-abm"><mat-icon class="icon-display">assignment_ind</mat-icon>Enrollment</li>
-                <li routerLink="users-abm"><mat-icon class="icon-display">person</mat-icon>Users</li>
+                <li *ngIf="(role$ | async) === 'ADMINISTRATOR'" routerLink="users-abm"><mat-icon class="icon-display">person</mat-icon>Users</li>
                 <li (click)="logout()" routerLink="/auth"><mat-icon class="icon-display">close</mat-icon>Log out</li>
             </ul>
         </div>

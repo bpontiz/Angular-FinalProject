@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { LoginPayload } from '../auth/model/auth.login.model';
 import { AuthService } from '../auth/services/auth.service';
 import { Store } from '@ngrx/store';
-import { selectAuthUser } from '../store/auth/auth.selector';
+import { selectAuthUser, selectAuthUserRole } from '../store/auth/auth.selector';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,9 +13,13 @@ import { selectAuthUser } from '../store/auth/auth.selector';
 export class DashboardComponent {
   constructor(private authService: AuthService, private store: Store) {
     this.authService$ = this.store.select(selectAuthUser);
+
+    this.role$ = this.store.select(selectAuthUserRole);
   };
 
   public authUser = this.authService.userForAuthentication;
+
+  public role$: Observable<string | null | undefined>;
 
   logout(): void {
     this.authService.logout();

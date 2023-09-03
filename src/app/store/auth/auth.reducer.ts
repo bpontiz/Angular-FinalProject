@@ -7,7 +7,7 @@ export const authFeatureKey = 'auth';
 
 export interface AuthState {
     authUser: User | null;
-}
+};
 
 const initialState: AuthState = {
     authUser: null
