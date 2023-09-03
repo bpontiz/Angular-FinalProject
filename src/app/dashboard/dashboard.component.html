@@ -1,5 +1,5 @@
 <mat-drawer-container class="drawerContainer">
-    <mat-drawer mode="over" #drawer class="drawerSidenav" mode="side">
+    <mat-drawer opened mode="over" #drawer class="example-sidenav" mode="side">
         <div class="divUlSidenav">
             <p class="pMenu">Menu</p>
             <ul>
@@ -15,16 +15,16 @@
     
     <div class="toolbarDiv">
         <mat-toolbar>
-            <button (click)="drawer.toggle()" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+            <button (click)="drawer?.toggle()" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
             <mat-icon>menu</mat-icon>
             </button>
             <span class="title">Studently</span>
             <span class="example-spacer"></span>
             <span *ngIf="authService$ | async;" class="authUsername">{{ authUser }}</span>
-            <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+            <button routerLink="home" mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
                 <mat-icon>home</mat-icon>
             </button>
-            <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+            <button routerLink="students-abm" mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
                 <mat-icon>account_circle</mat-icon>
             </button>
         </mat-toolbar>

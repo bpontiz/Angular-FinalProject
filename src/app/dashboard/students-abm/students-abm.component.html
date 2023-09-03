@@ -29,7 +29,8 @@
                 [disabled]="
                     !student_name_control.valid ||
                     !student_surname_control.valid ||
-                    !email.valid" 
+                    !email.valid ||
+                    !(isAdmin$ | async)"
                 (click)="onSubmit()"><mat-icon>add</mat-icon>Register Student</button>
         </form>
     </div>

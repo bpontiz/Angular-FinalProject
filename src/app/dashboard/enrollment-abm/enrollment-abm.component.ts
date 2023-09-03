@@ -8,6 +8,7 @@ import { EnrollmentAbmService } from '../services/enrollment-abm/enrollment-abm.
 import { CounterEnrollmentActions } from 'src/app/store/enrollments/counter.enrollments.actions';
 import { EnrollmentAbmActions } from 'src/app/store/enrollment-abm/enrollment-abm.actions';
 import { selectEnrollmentAbmStateValue } from 'src/app/store/enrollment-abm/enrollment-abm.selectors';
+import { selectIsAdmin } from 'src/app/store/auth/auth.selector';
 
 
 interface EnrollmentModel {
@@ -39,6 +40,8 @@ export class EnrollmentAbmComponent implements OnDestroy, OnInit {
     this.enrollment = this.enrollmentService.getEnrollment();
 
     this.enrollments$ = this.store.select(selectEnrollmentAbmStateValue);
+
+    this.isAdmin$ = this.store.select(selectIsAdmin);
   }
 
   ngOnDestroy(): void {
@@ -48,6 +51,8 @@ export class EnrollmentAbmComponent implements OnDestroy, OnInit {
   ngOnInit(): void {
     this.store.dispatch(EnrollmentAbmActions.loadEnrollmentAbms());
   };
+
+  public isAdmin$: Observable<boolean>;
 
   public enrollments$: Observable<Enrollment[]>;
 

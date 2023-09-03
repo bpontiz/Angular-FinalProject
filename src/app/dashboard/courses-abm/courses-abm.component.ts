@@ -5,6 +5,7 @@ import { CoursesAbmService } from '../services/courses-abm/courses-abm.service';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { CounterCourseActions } from 'src/app/store/courses/counter.courses.actions';
+import { selectIsAdmin } from 'src/app/store/auth/auth.selector';
 
 interface CourseModel {
   id: FormControl <string | null>;
@@ -32,7 +33,11 @@ export class CoursesAbmComponent {
     this.courseService.loadCourses();
 
     this.courses = this.courseService.getCourses();
-  }
+
+    this.isAdmin$ = this.store.select(selectIsAdmin);
+  };
+  
+  public isAdmin$: Observable<boolean>;
 
   public courses: Observable<Course[]>;
 

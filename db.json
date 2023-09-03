@@ -49,6 +49,18 @@
       "courseName": "Java",
       "type": "A",
       "credits": "9"
+    },
+    {
+      "id": 5,
+      "courseName": "React",
+      "type": "FP",
+      "credits": 6
+    },
+    {
+      "id": 6,
+      "courseName": "Angular",
+      "type": "FP",
+      "credits": 7
     }
   ],
   "users": [

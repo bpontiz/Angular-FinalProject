@@ -5,6 +5,7 @@ import { StudentsAbmService } from '../services/students-abm/students-abm.servic
 import { Observable, Subject } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { CounterStudentActions } from 'src/app/store/students/counter.students.actions';
+import { selectIsAdmin } from 'src/app/store/auth/auth.selector';
 
 
 interface StudentModel {
@@ -28,11 +29,15 @@ export class StudentsAbmComponent implements OnDestroy {
     this.studentService.loadStudents();
 
     this.students = this.studentService.getStudents();
+
+    this.isAdmin$ = this.store.select(selectIsAdmin);
   };
 
   ngOnDestroy(): void {
     this.destroyed.next(true);
   };
+
+  public isAdmin$: Observable<boolean>;
 
   public students: Observable<Student[]>;
 

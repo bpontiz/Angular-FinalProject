@@ -31,7 +31,8 @@
                 type="submit"
                 [disabled]="
                     !student_fullname.valid ||
-                    !student_course.valid" 
+                    !student_course.valid ||
+                    !(isAdmin$ | async)" 
                 (click)="onSubmit()"><mat-icon>add</mat-icon>Enroll</button>
         </form>
     </div>

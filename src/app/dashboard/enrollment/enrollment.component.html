@@ -1,6 +1,6 @@
 <section id="enrollmentSection">
     <p class="titleTable" appFontSizing>Enrollment table</p>
-    <p>Click the eye-icon to see a close-up list of the courses that the student has been enrolled to. You can edit or delete a student's information by clicking on the pencil-icon or the trash bin-icon respectively.</p> 
+    <p class="enrollmentP">Click the eye-icon to see a close-up list of the courses that the student has been enrolled to. You can edit or delete a student's information by clicking on the pencil-icon or the trash bin-icon respectively. You need admin permissions to make changes here.</p> 
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
       <ng-container matColumnDef="edit">
@@ -9,10 +9,10 @@
           <button [routerLink]="enrollment.student_id" class="buttonChanging">
             <mat-icon>visibility</mat-icon>
           </button>
-          <button (click)="editEnrollment.emit(enrollment)" class="buttonChanging">
+          <button [disabled]="!(isAdmin$ | async)" (click)="editEnrollment.emit(enrollment)" class="buttonChanging">
             <mat-icon>create</mat-icon>
           </button>
-          <button (click)="deleteEnrollment.emit(enrollment)" class="buttonChanging">
+          <button [disabled]="!(isAdmin$ | async)" (click)="deleteEnrollment.emit(enrollment)" class="buttonChanging">
             <mat-icon>delete_forever</mat-icon>
           </button>
         </td>

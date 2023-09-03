@@ -4,6 +4,7 @@ import { LoginPayload } from '../auth/model/auth.login.model';
 import { AuthService } from '../auth/services/auth.service';
 import { Store } from '@ngrx/store';
 import { selectAuthUser, selectAuthUserRole } from '../store/auth/auth.selector';
+import { MatDrawer } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,15 +18,17 @@ export class DashboardComponent {
     this.role$ = this.store.select(selectAuthUserRole);
   };
 
+  
   public authUser = this.authService.userForAuthentication;
-
+  
   public role$: Observable<string | null | undefined>;
-
+  
   logout(): void {
     this.authService.logout();
   }
-
+  
   @Input()
+  public drawer?: MatDrawer;
   public authService$: Observable<LoginPayload | null>;
   
 };

@@ -20,7 +20,7 @@
                 </mat-form-field>
                 <mat-form-field class="inputBox">
                     <mat-label class="inputLabel">Course's credits</mat-label>
-                    <input matInput placeholder="5" [formControl]="credits_control" required>
+                    <input type="number" matInput placeholder="5" [formControl]="credits_control" required>
                     <mat-error *ngIf="credits_control.invalid">{{getErrorMessage(credits_control)}}</mat-error>
                 </mat-form-field>
             </div>
@@ -33,7 +33,8 @@
                 [disabled]="
                     !courseName_control.valid ||
                     !type_control.valid ||
-                    !credits_control.valid" 
+                    !credits_control.valid ||
+                    !(isAdmin$ | async)" 
                 (click)="onSubmit()"><mat-icon>add</mat-icon>Register Course</button>
         </form>
     </div>
