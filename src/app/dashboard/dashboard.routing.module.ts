@@ -6,6 +6,7 @@ import { StudentsAbmComponent } from "./students-abm/students-abm.component";
 import { EnrollmentAbmComponent } from "./enrollment-abm/enrollment-abm.component";
 import { EnrollmentDetailComponent } from "./enrollment-detail/enrollment-detail.component";
 import { UsersAbmComponent } from "./users-abm/users-abm.component";
+import { adminGuard } from "../auth/guards/admin.guard";
 
 @NgModule({
     imports: [
@@ -15,7 +16,7 @@ import { UsersAbmComponent } from "./users-abm/users-abm.component";
             { path: 'courses-abm', component: CoursesAbmComponent },
             { path: 'enrollment-abm', component: EnrollmentAbmComponent },
             { path: 'enrollment-abm/:id', component: EnrollmentDetailComponent },
-            { path: 'users-abm', component: UsersAbmComponent },
+            { path: 'users-abm', canActivate: [adminGuard], component: UsersAbmComponent, loadChildren: () => import('./users-abm/users-abm.module').then( tsModule => tsModule.UsersAbmModule) },
             { path: '**', redirectTo: '/dashboard/home' }
         ])
     ],

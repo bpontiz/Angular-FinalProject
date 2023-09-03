@@ -75,6 +75,14 @@
       "password": "1234pat",
       "token": "%$ju712m9a8f33l0j9v2",
       "role": "USER"
+    },
+    {
+      "id": 4,
+      "username": "Will",
+      "email": "will@user",
+      "password": "1234will",
+      "token": "lQREL+DY0xmaR+ObIR5h",
+      "role": "USER"
     }
   ],
   "enrollments": [

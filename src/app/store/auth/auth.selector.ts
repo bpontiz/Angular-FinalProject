@@ -8,3 +8,5 @@ export const selectAuthState = createFeatureSelector<AuthState>(counterFeauterKe
 export const selectAuthUser = createSelector(selectAuthState, (state) => state.authUser);
 
 export const selectAuthUserRole = createSelector(selectAuthState, (state) => state.authUser?.role);
+
+export const selectIsAdmin = createSelector(selectAuthState, (state) => state.authUser?.role === 'ADMINISTRATOR' );

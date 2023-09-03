@@ -9,7 +9,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { DashboardComponent } from './dashboard.component';
 import { RouterModule } from '@angular/router';
 import { DashboardRoutingModule } from './dashboard.routing.module';
-import { MatHeaderRowDef } from '@angular/material/table';
 
 @NgModule({
     declarations: [

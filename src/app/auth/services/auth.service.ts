@@ -79,6 +79,7 @@ export class AuthService {
     }
 
     public logout(): void {
+        localStorage.setItem('token', '');
         this.store.dispatch(AuthActions.setAuthUser({ payload: null }));
     }
 }; 

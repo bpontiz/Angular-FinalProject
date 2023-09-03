@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../../users/model/users.model';
 import { BehaviorSubject, Observable, map, mergeMap, take } from 'rxjs';
+import cryptoRandomString from 'crypto-random-string';
 import db from '../../../../../db.json';
 
 @Injectable({
@@ -28,11 +29,21 @@ export class UsersAbmService {
     return this.users$;
   };
 
+  generateToken(length: number): string {
+    return cryptoRandomString({ length, type: 'base64' });
+  };
+  
+
   addUser(newUser: User): void {
     const isUser = db.users.find( u => u.email === newUser.email );
 
+    const modifiedUser: User = {
+      ...newUser,
+      token: this.generateToken(20)
+    };
+
     if (!isUser) {
-      this.httpClient.post<User>('http://localhost:3000/users', newUser)
+      this.httpClient.post<User>('http://localhost:3000/users', modifiedUser)
         .pipe(
           mergeMap(userToBeAdded => this.users$.pipe(
             take(1),
