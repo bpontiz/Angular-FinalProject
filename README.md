@@ -2,6 +2,16 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.0.
 
+## Installation
+
+On a console, run `git clone https://github.com/bpontiz/Angular-FinalProject.git`.
+
+Then run `npm install` at root path to install project dependencies.
+
+## Usage
+
+Run `ng serve -o` at root path and on another console window, run `json-server db.json --watch` to get data persistance.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
