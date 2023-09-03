@@ -17,6 +17,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { EnrollmentAbmComponent } from './dashboard/enrollment-abm/enrollment-abm.component';
 import { EnrollmentComponent } from './dashboard/enrollment/enrollment.component';
 import { EnrollmentDetailComponent } from './dashboard/enrollment-detail/enrollment-detail.component';
+import { UsersAbmComponent } from './dashboard/users-abm/users-abm.component';
+import { UsersComponent } from './dashboard/users/users.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { EnrollmentDetailComponent } from './dashboard/enrollment-detail/enrollm
     CoursesAbmComponent,
     EnrollmentAbmComponent,
     EnrollmentComponent,
-    EnrollmentDetailComponent
+    EnrollmentDetailComponent,
+    UsersAbmComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,

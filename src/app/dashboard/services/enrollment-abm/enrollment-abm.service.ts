@@ -39,28 +39,41 @@ export class EnrollmentAbmService {
     const getStudent: Student | undefined = db.students.find(
       student => `${student.name} ${student.surname}` === newEnrollment.student_fullname);
 
-    if (getStudent) {
-      const modifiedEnrollment = {
-        ...newEnrollment,
-        student_id: getStudent.id,
-        student_fullname: newEnrollment.student_fullname?.toUpperCase(),
-        student_course: newEnrollment.student_course?.toUpperCase()
-      };
-      
-      this.httpClient.post<Enrollment>('http://localhost:3000/enrollments', modifiedEnrollment)
-        .pipe(
-          mergeMap(enrollmentToBeAdded => this.enrollment$.pipe(
-            take(1),
-            map(oldCollection => [...oldCollection, enrollmentToBeAdded])
-          ))
-        )
-        .subscribe({
-          next: updatedCollection => {
-            this._enrollment$.next(updatedCollection)
-          }
-        });
-    }
+      if (getStudent) {
+        const modifiedEnrollment = {
+          ...newEnrollment,
+          student_id: getStudent.id,
+          student_fullname: newEnrollment.student_fullname?.toUpperCase() || null,
+          student_course: newEnrollment.student_course?.toUpperCase() || null
+        };
 
+        const isEnrolled: Enrollment | undefined = db.enrollments.find(
+          enroll => enroll.student_fullname === modifiedEnrollment.student_fullname &&
+          enroll.student_course === modifiedEnrollment.student_course
+        );
+
+        if (!isEnrolled) {
+          this.httpClient.post<Enrollment>('http://localhost:3000/enrollments', modifiedEnrollment)
+            .pipe(
+              mergeMap(enrollmentToBeAdded => this.enrollment$.pipe(
+                take(1),
+                map(oldCollection => [...oldCollection, enrollmentToBeAdded])
+              ))
+            )
+            .subscribe({
+              next: updatedCollection => {
+                this._enrollment$.next(updatedCollection)
+              }
+            });
+
+            alert(`Enrollment successful.`);
+
+        } else {
+
+          confirm(`Student ${modifiedEnrollment.student_fullname} cannot be enrolled at ${modifiedEnrollment.student_course} again.`);
+
+        }
+      };
   };
 
   deleteEnrollment(enrollmentToDelete: Enrollment): void {
@@ -82,6 +95,9 @@ export class EnrollmentAbmService {
         .subscribe({
           next: newCollection => this._enrollment$.next(newCollection)
         });
+
+        alert(`Enrollment successfully deleted.`);
+
     };
   };
 

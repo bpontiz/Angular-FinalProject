@@ -53,16 +53,28 @@
   ],
   "users": [
     {
+      "id": 1,
       "username": "Admin",
       "email": "admin@admin",
       "password": "1234",
-      "token": "%$bh279a8s7d98d9s7d0"
+      "token": "%$bh279a8s7d98d9s7d0",
+      "role": "ADMINISTRATOR"
     },
     {
+      "id": 2,
       "username": "Bruno",
       "email": "bruno@admin",
       "password": "1234bruno",
-      "token": "%$rt479z1s7y28d2f2k7"
+      "token": "%$rt479z1s7y28d2f2k7",
+      "role": "ADMINISTRATOR"
+    },
+    {
+      "id": 3,
+      "username": "Patrick",
+      "email": "pat@user",
+      "password": "1234pat",
+      "token": "%$ju712m9a8f33l0j9v2",
+      "role": "USER"
     }
   ],
   "enrollments": [
@@ -71,35 +83,49 @@
       "student_id": 1,
       "student_fullname": "PAT MCMILLAN",
       "student_course": "TYPESCRIPT",
-      "enrollment_timestamp": "30/8/2023, 18:26:19"
+      "enrollment_timestamp": "30/8/2023, 6:26:19 PM"
     },
     {
       "id": 2,
       "student_id": 2,
       "student_fullname": "JASON STATE",
       "student_course": "GO",
-      "enrollment_timestamp": "31/8/2023, 11:05:13"
+      "enrollment_timestamp": "31/8/2023, 11:05:13 AM"
     },
     {
       "id": 4,
       "student_id": 1,
       "student_fullname": "PAT MCMILLAN",
       "student_course": "JAVASCRIPT",
-      "enrollment_timestamp": "31/8/2023, 11:05:23"
+      "enrollment_timestamp": "31/8/2023, 11:05:23 AM"
     },
     {
       "id": 5,
       "student_id": 4,
       "student_fullname": "MILE SANTERIA",
       "student_course": "JAVA",
-      "enrollment_timestamp": "31/8/2023, 11:06:48"
+      "enrollment_timestamp": "31/8/2023, 11:06:48 AM"
     },
     {
       "id": 6,
       "student_id": 2,
       "student_fullname": "JASON STATE",
       "student_course": "JAVA",
-      "enrollment_timestamp": "31/8/2023, 11:07:06"
+      "enrollment_timestamp": "31/8/2023, 11:07:06 AM"
+    },
+    {
+      "id": 7,
+      "student_id": 2,
+      "student_fullname": "JASON STATE",
+      "student_course": "TYPESCRIPT",
+      "enrollment_timestamp": "9/2/2023, 7:01:08 PM"
+    },
+    {
+      "id": 8,
+      "student_id": 3,
+      "student_fullname": "MIKY MYERS",
+      "student_course": "GO",
+      "enrollment_timestamp": "9/2/2023, 7:02:13 PM"
     }
   ]
 }

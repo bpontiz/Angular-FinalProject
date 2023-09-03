@@ -92,5 +92,5 @@ export class CoursesAbmComponent {
 
   onEditCourse(editCourse: Course): void {    
     this.courseService.editCourse(editCourse);
-  }
+  };
 }

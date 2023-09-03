@@ -1,0 +1,51 @@
+<section id="abmSection">
+    <div class="shadowDiv">
+        <p class="titleAbm" appFontSizing>Users ABM</p>
+        <p class="subtextAbm">ABM system allows you to sign up new users, update existing ones and make dismissions.</p>
+        <form [formGroup]="userModel" #courseForm="ngForm" (ngSubmit)="courseForm.resetForm()">
+            <div class="inputContainer">
+                <mat-form-field class="inputBox">
+                    <mat-label class="inputLabel">Username</mat-label>
+                    <input matInput placeholder="John" [formControl]="username_control" required>
+                    <mat-error *ngIf="username_control.invalid">{{getErrorMessage(username_control)}}</mat-error>
+                </mat-form-field>
+                <mat-form-field class="inputBox">
+                    <mat-label class="inputLabel">User's role</mat-label>
+                    <mat-select class="inputOption" [formControl]="role_control" required>
+                        <mat-option class="inputOption" *ngFor="let type of types" [value]="type.value">
+                            {{type.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="role_control.invalid">{{getErrorMessage(role_control)}}</mat-error>
+                </mat-form-field>
+                <mat-form-field class="inputBox">
+                    <mat-label class="inputLabel">User's email</mat-label>
+                    <input matInput placeholder="john@user" [formControl]="email_control" required>
+                    <mat-error *ngIf="email_control.invalid">{{getErrorMessage(email_control)}}</mat-error>
+                </mat-form-field>
+                <mat-form-field class="inputBox">
+                    <mat-label class="inputLabel">User's password</mat-label>
+                    <input matInput placeholder="1234john" [formControl]="password_control" required>
+                    <mat-error *ngIf="password_control.invalid">{{getErrorMessage(password_control)}}</mat-error>
+                </mat-form-field>
+            </div>
+            <p class="subtextComplete">Complete form to create a new user.</p>
+            <button
+                class="submitBtn"
+                mat-raised-button
+                color="warn"
+                type="submit"
+                [disabled]="
+                    !username_control.valid ||
+                    !email_control.valid ||
+                    !password_control.valid ||
+                    !role_control.valid" 
+                (click)="onSubmit()"><mat-icon>add</mat-icon>Create User</button>
+        </form>
+    </div>
+    <app-users
+        [dataSource]="(users | async) || []"
+        (deleteUser)="onDeleteUser($event)"
+        (editUser)="onEditUser($event)">
+    </app-users>
+</section>

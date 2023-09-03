@@ -5,6 +5,7 @@ import { HomeComponent } from "./home/home.component";
 import { StudentsAbmComponent } from "./students-abm/students-abm.component";
 import { EnrollmentAbmComponent } from "./enrollment-abm/enrollment-abm.component";
 import { EnrollmentDetailComponent } from "./enrollment-detail/enrollment-detail.component";
+import { UsersAbmComponent } from "./users-abm/users-abm.component";
 
 @NgModule({
     imports: [
@@ -14,6 +15,7 @@ import { EnrollmentDetailComponent } from "./enrollment-detail/enrollment-detail
             { path: 'courses-abm', component: CoursesAbmComponent },
             { path: 'enrollment-abm', component: EnrollmentAbmComponent },
             { path: 'enrollment-abm/:id', component: EnrollmentDetailComponent },
+            { path: 'users-abm', component: UsersAbmComponent },
             { path: '**', redirectTo: '/dashboard/home' }
         ])
     ],

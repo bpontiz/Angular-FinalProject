@@ -101,6 +101,7 @@ export class EnrollmentAbmComponent implements OnDestroy, OnInit {
   };
 
   onSubmit(): void {
+
     this.enrollmentService.addEnrollment(
       {
         id: 0,
